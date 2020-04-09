@@ -70,7 +70,7 @@ void disp_2darray(int **A,int L,int C)// affiche le contenus du tableaux
     {
         for (int j = 0; j < C; j++)
         {
-            printf("[%d] ", A[i][j]); // affiche le contenus de la Ligne i et de la Colonne j
+            printf("\t[%d] ", A[i][j]); // affiche le contenus de la Ligne i et de la Colonne j
         }
         printf("\n");
     }
