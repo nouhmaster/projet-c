@@ -1,6 +1,9 @@
 #ifndef FUNCTION_H_INCLUDED
 #define FUNCTION_H_INCLUDED
 
+#define LARGEUR 4
+#define HAUTEUR 4
+
 typedef struct Pos
 {
   int x;
@@ -17,6 +20,9 @@ void droite(int **A,int L,int C,struct Pos *pos);
 void gauche(int **A,int L,int C,struct Pos *pos);
 void bas(int **A,int L,int C,struct Pos *pos);
 void haut(int **A,int L,int C,struct Pos *pos);
+void moove(int ** A, int L, int C, struct Pos * pos);
+
+
 
 
 #endif // FUNCTION_H_INCLUDED

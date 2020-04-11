@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <time.h>
 #include "function.h"
 
 
@@ -66,6 +70,8 @@ void haut(int ** A, int L, int C, struct Pos * pos) {
     pos -> y = moduloPositif(pos -> y,L);
     A[moduloPositif(pos -> y + 1,L)][pos -> x] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
+    disp_2darray(A,LARGEUR,HAUTEUR);
+    moove(A,HAUTEUR,LARGEUR,pos);
 }
 void droite(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -74,6 +80,8 @@ void droite(int ** A, int L, int C, struct Pos * pos) {
     pos -> x = moduloPositif(pos -> x,C);
     A[pos -> y][moduloPositif(pos -> x - 1, C)] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
+    disp_2darray(A,LARGEUR,HAUTEUR);
+    moove(A,HAUTEUR,LARGEUR,pos);
 }
 void gauche(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -82,6 +90,9 @@ void gauche(int ** A, int L, int C, struct Pos * pos) {
     pos -> x = moduloPositif(pos -> x,C);
     A[pos -> y][moduloPositif(pos -> x + 1,C)] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
+    disp_2darray(A,LARGEUR,HAUTEUR);
+    moove(A,HAUTEUR,LARGEUR,pos);
+    
 }
 void bas(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -90,4 +101,35 @@ void bas(int ** A, int L, int C, struct Pos * pos) {
     pos -> y = moduloPositif(pos -> y,L);
     A[moduloPositif(pos -> y - 1,L)][pos -> x] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
+    disp_2darray(A,LARGEUR,HAUTEUR);
+    moove(A,HAUTEUR,LARGEUR,pos);
+}
+void moove(int ** A, int L, int C, struct Pos * pos)
+{
+    int x;
+    printf("pour allez en haut mettre : 1,");
+    printf(" en bas : 2,");
+    printf(" a gauche : 3,");
+    printf(" a droite : 4  = ");
+    scanf("%d",&x);
+
+    switch (x)
+    {
+    case 1:
+        haut(A,HAUTEUR,LARGEUR,pos);
+        break;
+    case 2:
+        bas(A,HAUTEUR,LARGEUR,pos);
+        break;
+    case 3:
+        gauche(A,HAUTEUR,LARGEUR,pos);
+        break;
+    case 4:
+        droite(A,HAUTEUR,LARGEUR,pos);
+        break;
+    default:
+    moove(A,HAUTEUR,LARGEUR,pos);
+        break;
+    }
+
 }
