@@ -55,9 +55,29 @@ void disp_2darray(int **A,int L,int C)// affiche le contenus du tableaux
     //direction(A,L,C);
 }
 
+void test(int ** A, int L, int C, struct Pos * pos)
+{
+    int temp;
+    for (int i = (L*C) - 1; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            if (A[(j + 1)/C][(j + 1)%C] < A[j/C][j%C])//tri a bull d'un tableau 2d
+             {
+                printf("le jeux continue:\n");
+                moove(A,HAUTEUR,LARGEUR,pos);
+            }
+        }
+    }
+    printf("gg tu a reussi\n");
+    freeA(A);
+}
+
+
+
+
+
 void freeA(int **A) // libere l'espace allouer au tableaux
 {
-    free(A); // permet de librere l'espace memoire du tableaux a la fin du programme
+    free(*A); // permet de librere l'espace memoire du tableaux a la fin du programme
 }
 
 int moduloPositif(int valeur, int modulo){
@@ -71,7 +91,7 @@ void haut(int ** A, int L, int C, struct Pos * pos) {
     A[moduloPositif(pos -> y + 1,L)][pos -> x] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
     disp_2darray(A,LARGEUR,HAUTEUR);
-    moove(A,HAUTEUR,LARGEUR,pos);
+    test(A,HAUTEUR,LARGEUR,pos);
 }
 void droite(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -81,7 +101,7 @@ void droite(int ** A, int L, int C, struct Pos * pos) {
     A[pos -> y][moduloPositif(pos -> x - 1, C)] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
     disp_2darray(A,LARGEUR,HAUTEUR);
-    moove(A,HAUTEUR,LARGEUR,pos);
+    test(A,HAUTEUR,LARGEUR,pos);
 }
 void gauche(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -91,8 +111,8 @@ void gauche(int ** A, int L, int C, struct Pos * pos) {
     A[pos -> y][moduloPositif(pos -> x + 1,C)] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
     disp_2darray(A,LARGEUR,HAUTEUR);
-    moove(A,HAUTEUR,LARGEUR,pos);
-    
+    test(A,HAUTEUR,LARGEUR,pos);
+
 }
 void bas(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -102,33 +122,35 @@ void bas(int ** A, int L, int C, struct Pos * pos) {
     A[moduloPositif(pos -> y - 1,L)][pos -> x] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
     disp_2darray(A,LARGEUR,HAUTEUR);
-    moove(A,HAUTEUR,LARGEUR,pos);
+    test(A,HAUTEUR,LARGEUR,pos);
 }
 void moove(int ** A, int L, int C, struct Pos * pos)
 {
     int x;
-    printf("pour allez en haut mettre : 1,");
+    printf("pour allez en haut mettre : 5,");
     printf(" en bas : 2,");
-    printf(" a gauche : 3,");
-    printf(" a droite : 4  = ");
+    printf(" a gauche : 1,");
+    printf(" a droite : 3  = ");
     scanf("%d",&x);
+
+
 
     switch (x)
     {
-    case 1:
+    case 5:
         haut(A,HAUTEUR,LARGEUR,pos);
         break;
     case 2:
         bas(A,HAUTEUR,LARGEUR,pos);
         break;
-    case 3:
+    case 1:
         gauche(A,HAUTEUR,LARGEUR,pos);
         break;
-    case 4:
+    case 3:
         droite(A,HAUTEUR,LARGEUR,pos);
         break;
     default:
-    moove(A,HAUTEUR,LARGEUR,pos);
+        moove(A,HAUTEUR,LARGEUR,pos);
         break;
     }
 

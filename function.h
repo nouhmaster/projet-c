@@ -16,11 +16,13 @@ int ** create_2darray(int L, int C);
 void create_2darray_bis(int ***A, int L, int C);
 void disp_2darray(int **A,int L,int C);
 void freeA(int ** A);
+void test(int ** A, int L, int C, struct Pos * pos);
 void droite(int **A,int L,int C,struct Pos *pos);
 void gauche(int **A,int L,int C,struct Pos *pos);
 void bas(int **A,int L,int C,struct Pos *pos);
 void haut(int **A,int L,int C,struct Pos *pos);
 void moove(int ** A, int L, int C, struct Pos * pos);
+//void triABulle2D(int ** tab, int T, int T2);
 
 
 
