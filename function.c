@@ -4,6 +4,9 @@
 #include <time.h>
 #include "function.h"
 
+int hauteur = 1;
+int largeur = 1;
+
 
 
 void create_2darray_bis(int ***A, int L, int C) // on cree un tableaux a 2 dimension qui va contenir le "plateaux de jeux"
@@ -63,7 +66,7 @@ void test(int ** A, int L, int C, struct Pos * pos)
             if (A[(j + 1)/C][(j + 1)%C] < A[j/C][j%C])//tri a bull d'un tableau 2d
              {
                 printf("le jeux continue:\n");
-                moove(A,HAUTEUR,LARGEUR,pos);
+                moove(A,hauteur,largeur,pos);
             }
         }
     }
@@ -90,8 +93,8 @@ void haut(int ** A, int L, int C, struct Pos * pos) {
     pos -> y = moduloPositif(pos -> y,L);
     A[moduloPositif(pos -> y + 1,L)][pos -> x] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
-    disp_2darray(A,LARGEUR,HAUTEUR);
-    test(A,HAUTEUR,LARGEUR,pos);
+    disp_2darray(A,largeur,hauteur);
+    test(A,hauteur,largeur,pos);
 }
 void droite(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -100,8 +103,8 @@ void droite(int ** A, int L, int C, struct Pos * pos) {
     pos -> x = moduloPositif(pos -> x,C);
     A[pos -> y][moduloPositif(pos -> x - 1, C)] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
-    disp_2darray(A,LARGEUR,HAUTEUR);
-    test(A,HAUTEUR,LARGEUR,pos);
+    disp_2darray(A,largeur,hauteur);
+    test(A,hauteur,largeur,pos);
 }
 void gauche(int ** A, int L, int C, struct Pos * pos) {
     int temps; // 1 2 3
@@ -110,8 +113,8 @@ void gauche(int ** A, int L, int C, struct Pos * pos) {
     pos -> x = moduloPositif(pos -> x,C);
     A[pos -> y][moduloPositif(pos -> x + 1,C)] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
-    disp_2darray(A,LARGEUR,HAUTEUR);
-    test(A,HAUTEUR,LARGEUR,pos);
+    disp_2darray(A,largeur,hauteur);
+    test(A,hauteur,largeur,pos);
 
 }
 void bas(int ** A, int L, int C, struct Pos * pos) {
@@ -121,8 +124,8 @@ void bas(int ** A, int L, int C, struct Pos * pos) {
     pos -> y = moduloPositif(pos -> y,L);
     A[moduloPositif(pos -> y - 1,L)][pos -> x] = A[pos -> y][pos -> x]; // 2 -> 1
     A[pos -> y][pos -> x] = temps;
-    disp_2darray(A,LARGEUR,HAUTEUR);
-    test(A,HAUTEUR,LARGEUR,pos);
+    disp_2darray(A,largeur,hauteur);
+    test(A,hauteur,largeur,pos);
 }
 void moove(int ** A, int L, int C, struct Pos * pos)
 {
@@ -138,20 +141,67 @@ void moove(int ** A, int L, int C, struct Pos * pos)
     switch (x)
     {
     case 5:
-        haut(A,HAUTEUR,LARGEUR,pos);
+        haut(A,hauteur,largeur,pos);
         break;
     case 2:
-        bas(A,HAUTEUR,LARGEUR,pos);
+        bas(A,hauteur,largeur,pos);
         break;
     case 1:
-        gauche(A,HAUTEUR,LARGEUR,pos);
+        gauche(A,hauteur,largeur,pos);
         break;
     case 3:
-        droite(A,HAUTEUR,LARGEUR,pos);
+        droite(A,hauteur,largeur,pos);
         break;
     default:
-        moove(A,HAUTEUR,LARGEUR,pos);
+        moove(A,hauteur,largeur,pos);
         break;
     }
+
+}
+void choixdifficultes(int *hauteurptr,int *largeurptr)
+{
+
+     int x;
+    printf("pour le mode debutant mettez 1 \n");
+    printf("pour le mode experimenter mettez 2 \n");
+    printf("pour le mode NIGHTMARE mettez 6 \n");
+    printf("pour le mode ARMAGEDDON mettez le 66 \n");
+    printf("pour le mode xXx Pro Game Master xXx mettez le 666 \n");
+    scanf("%d",&x);
+
+
+
+    switch (x)
+    {
+    case 1:
+        *hauteurptr = 4;
+        *largeurptr = 4;
+        break;
+    case 2:
+        *hauteurptr = 8;
+        *largeurptr = 8;
+        break;
+    case 6:
+        *hauteurptr = 14;
+        *largeurptr = 14;
+        break;
+    case 66:
+        *hauteurptr = 29;
+        *largeurptr = 29;
+        break;
+    case 666:
+        *hauteurptr = 59;
+        *largeurptr = 59;
+        break;
+    case 42:
+        printf("allons bon vous conaissez deja la reponse au grand secret de l'univers vous pourrez donc aisement resoudre ceci \n");
+        *hauteurptr = 659;
+        *largeurptr = 659;
+        break;
+    default:
+        choixdifficultes(&hauteur,&largeur);
+        break;
+    }
+
 
 }

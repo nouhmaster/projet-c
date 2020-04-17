@@ -5,28 +5,27 @@
 #include "function.h"
 #include "function.c"
 
-
-
-
 int main()
 {
+
+choixdifficultes(&hauteur,&largeur);
+
 
   Pos *pos;
   pos = (Pos *) malloc(sizeof(Pos));
 
-  pos->x = LARGEUR-1;
-  pos->y = HAUTEUR-1;
+  pos->x = largeur-1;
+  pos->y = hauteur-1;
 
   int **tab = NULL;
 
-create_2darray_bis(&tab,LARGEUR,HAUTEUR);
-fill_2darray(tab,LARGEUR,HAUTEUR);
-disp_2darray(tab,LARGEUR,HAUTEUR);
-moove(tab,HAUTEUR,LARGEUR,pos);
+create_2darray_bis(&tab,largeur,hauteur);
+fill_2darray(tab,largeur,hauteur);
+disp_2darray(tab,largeur,hauteur);
+moove(tab,hauteur,largeur,pos);
 
 
 return 0;
-//disp_2darray(tab,LARGEUR,HAUTEUR);
 }
 
 
