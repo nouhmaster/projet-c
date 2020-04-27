@@ -17,7 +17,6 @@ choixdifficultes(&hauteur,&largeur);
   pos->x = largeur-1;
   pos->y = hauteur-1;
 
-  int **tab = NULL;
 
 create_2darray_bis(&tab,largeur,hauteur);
 fill_2darray(tab,largeur,hauteur);

@@ -6,7 +6,10 @@ typedef struct Pos
 {
   int x;
   int y;
+
 }Pos;
+
+int **tab = NULL;
 
 int moduloPositif(int vakeur,int modulo);
 void fill_2darray(int **A, int L, int C);
@@ -21,7 +24,7 @@ void bas(int **A,int L,int C,struct Pos *pos);
 void haut(int **A,int L,int C,struct Pos *pos);
 void moove(int ** A, int L, int C, struct Pos * pos);
 void choixdifficultes(int *hauteur,int *largeur);
-
+void rejouer();
 
 
 

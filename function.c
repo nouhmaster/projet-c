@@ -72,6 +72,7 @@ void test(int ** A, int L, int C, struct Pos * pos)
     }
     printf("gg tu a reussi\n");
     freeA(A);
+    rejouer();
 }
 
 
@@ -198,10 +199,47 @@ void choixdifficultes(int *hauteurptr,int *largeurptr)
         *hauteurptr = 659;
         *largeurptr = 659;
         break;
+    case 0:
+        printf("mode test activer \n");
+        *hauteurptr = 1;
+        *largeurptr = 1;
+        break;
+
     default:
         choixdifficultes(&hauteur,&largeur);
         break;
     }
 
 
+}
+void rejouer()
+{
+    Pos *pos;
+  pos = (Pos *) malloc(sizeof(Pos));
+
+  pos->x = largeur-1;
+  pos->y = hauteur-1;
+
+    int x;
+    printf("felecitation pour avoir gagner souhaitez vous rejouez ? 0 pour oui , 1 pour non \n");
+    scanf("%d",&x);
+
+    switch (x)
+    {
+    case 0 :
+        choixdifficultes(&hauteur,&largeur);
+        create_2darray_bis(&tab,largeur,hauteur);
+        fill_2darray(tab,largeur,hauteur);
+        disp_2darray(tab,largeur,hauteur);
+        moove(tab,hauteur,largeur,pos);
+        break;
+
+    case 1 :
+        break;
+
+    default :
+        rejouer();
+        break;
+
+    }
 }
