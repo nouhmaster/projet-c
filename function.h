@@ -2,14 +2,14 @@
 #define FUNCTION_H_INCLUDED
 
 
-typedef struct Pos
+typedef struct Pos // declaration de la structure
 {
   int x;
   int y;
 
 }Pos;
 
-int **tab = NULL;
+int **tab = NULL;//declaration du tableaux
 
 int moduloPositif(int vakeur,int modulo);
 void fill_2darray(int **A, int L, int C);

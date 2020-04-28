@@ -28,7 +28,7 @@ void fill_2darray(int **A, int L, int C) // fonction qui remplit le plateaux de 
         {
 
 
-            for(int count = 1; count < 20; count ++)
+            for(int count = 1; count < 20; count ++) // permet d'eviter tros de doublon lors du remplissage
                 {
 
                     if (i == L - 1 && j == C - 1)
@@ -36,7 +36,7 @@ void fill_2darray(int **A, int L, int C) // fonction qui remplit le plateaux de 
                         A[i][j] = 0; // permet de remplacer la derniere case du tableaux par 0 pour pouvoir jouer
                     }
                     else
-                        A[i][j]=rand()%(15 + 1 - 1) + 1;// remplit la case du tableaux avec un nombre aleatoire generer par rand entre 15 et 0
+                        A[i][j]=rand()%(50 + 1 - 1) + 1;// remplit la case du tableaux avec un nombre aleatoire generer par rand entre 50 et 0
                 }
 
         }
@@ -55,7 +55,6 @@ void disp_2darray(int **A,int L,int C)// affiche le contenus du tableaux
     }
     printf("\n");
     printf("\n");
-    //direction(A,L,C);
 }
 
 void test(int ** A, int L, int C, struct Pos * pos)
@@ -63,10 +62,10 @@ void test(int ** A, int L, int C, struct Pos * pos)
     int temp;
     for (int i = (L*C) - 1; i > 0; i--) {
         for (int j = 0; j < i; j++) {
-            if (A[(j + 1)/C][(j + 1)%C] < A[j/C][j%C])//tri a bull d'un tableau 2d
+            if (A[(j + 1)/C][(j + 1)%C] < A[j/C][j%C])//verifie si le tableaux est trier
              {
                 printf("le jeux continue:\n");
-                moove(A,hauteur,largeur,pos);
+                moove(A,hauteur,largeur,pos);// si pas fini on appelle la fonction move pour se deplacer
             }
         }
     }
@@ -85,9 +84,9 @@ void freeA(int **A) // libere l'espace allouer au tableaux
 }
 
 int moduloPositif(int valeur, int modulo){
-    return (valeur%modulo<0)?(valeur%modulo)+modulo:valeur%modulo;
+    return (valeur%modulo<0)?(valeur%modulo)+modulo:valeur%modulo; //permet de passer de l'autre cotes du tableaux
 }
-void haut(int ** A, int L, int C, struct Pos * pos) {
+void haut(int ** A, int L, int C, struct Pos * pos) { //fonction de deplacement
     int temps; // 1 2 3
     temps = A[pos -> y][pos -> x]; //2
     pos -> y--;
@@ -97,7 +96,7 @@ void haut(int ** A, int L, int C, struct Pos * pos) {
     disp_2darray(A,largeur,hauteur);
     test(A,hauteur,largeur,pos);
 }
-void droite(int ** A, int L, int C, struct Pos * pos) {
+void droite(int ** A, int L, int C, struct Pos * pos) {//fonction de deplacement
     int temps; // 1 2 3
     temps = A[pos -> y][pos -> x]; //2
     pos -> x++;
@@ -107,7 +106,7 @@ void droite(int ** A, int L, int C, struct Pos * pos) {
     disp_2darray(A,largeur,hauteur);
     test(A,hauteur,largeur,pos);
 }
-void gauche(int ** A, int L, int C, struct Pos * pos) {
+void gauche(int ** A, int L, int C, struct Pos * pos) {//fonction de deplacement
     int temps; // 1 2 3
     temps = A[pos -> y][pos -> x]; //2
     pos -> x--;
@@ -118,7 +117,7 @@ void gauche(int ** A, int L, int C, struct Pos * pos) {
     test(A,hauteur,largeur,pos);
 
 }
-void bas(int ** A, int L, int C, struct Pos * pos) {
+void bas(int ** A, int L, int C, struct Pos * pos) {//fonction de deplacement
     int temps; // 1 2 3
     temps = A[pos -> y][pos -> x]; //2
     pos -> y++;
@@ -129,7 +128,7 @@ void bas(int ** A, int L, int C, struct Pos * pos) {
     test(A,hauteur,largeur,pos);
 }
 void moove(int ** A, int L, int C, struct Pos * pos)
-{
+{// fonction qui permet de regrouper les fonction de deplacement grace a un switch
     int x;
     printf("pour allez en haut mettre : 5,");
     printf(" en bas : 2,");
@@ -213,7 +212,7 @@ void choixdifficultes(int *hauteurptr,int *largeurptr)
 
 }
 void rejouer()
-{
+{// fonction rejouer elle prompose de rejouer si le jeux et fini si oui elle propose de rejouer en fesant tous simplement les fonction de base qui ont eter apeller la premiere fois
     Pos *pos;
   pos = (Pos *) malloc(sizeof(Pos));
 
